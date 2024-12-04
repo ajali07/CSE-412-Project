@@ -26,9 +26,10 @@ pip install -r requirements.txt
 
 ## Setup:
 git clone https://github.com/ajali07/CSE-412-Project.git
+
 cd CSE-412-Project
 
-#Setting up virtual environment
+Setting up virtual environment
 
 ## Windows
 
