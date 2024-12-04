@@ -1,0 +1,118 @@
+
+body {
+    font-family: sans-serif;
+    background-color: #57687a;
+    margin:0px;
+    
+}
+
+.header-container {
+    background-color: #007bff;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.title {
+    margin: 0px;
+    font-size: 48px;
+}
+
+h2 {
+    margin-top:5px;
+    margin-bottom:5px;
+
+}
+.change-view { 
+    text-align: center;
+    
+}
+
+#view-button {
+    background-color: rgb(72, 156, 182);
+    color: black;
+    border: 1.5px solid black;
+    border-radius: 50px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#view-button:hover {
+    background-color: #0455ac;
+    color: white;
+}
+
+
+
+.results-search {
+    display: flex; 
+    justify-content: space-between;
+    padding-left: 140px;
+    padding-right: 140px;
+    margin-bottom: 0px;
+}
+
+#advanced-search {
+    color: blue;
+    cursor: pointer;
+}
+
+#advanced-search:hover {
+    color: darkblue;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #007bff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-container button:hover {
+    background-color: #0455ac;
+}
+
+.table-container {
+    
+    width: 80%;
+    margin:auto;
+    background-color: rgb(230, 222, 222);
+    border: 1.5px solid black;
+    border-radius: 5px;
+    
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #2784e8;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+tbody td {
+    padding: 8px;
+    border: 2px solid rgb(198, 194, 194);
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: white;
+}

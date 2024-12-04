@@ -1,4 +1,88 @@
+<!DOCTYPE html>
+<html lang = "en">
 <head>
+    <meta charset="UTF-8">
     <title>Customer Order System</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/styles.css"> 
 </head>
+<body>
+    <div class = "header-container">
+        <header class = "header">
+            <h1 class = "title"> Customer Order System</h1>
+        
+        </header>
+    </div>
+    
+    <div class = "change-view"> 
+        <h2> Current View: Placeholder</h2>
+        <button id = "view-button"> Change View</button>
+    </div>
+
+
+    <div class = "button-container">
+    <button id = "vendor-button" > Vendor </button>
+    <button id = "customer-button" > Customer </button>
+    <button id = "line-button" > Line </button>
+    <button id = "invoices-button" > Invoices </button>
+    <button id = "products-button" > Products </button>
+    </div>
+
+    <div class = "results-search"> 
+        <p id = "num-results">Showing X results </p> <!-- Dynamic content-->
+        <p id = "advanced-search"> Advanced Search </p> <!-- Pop up WIP-->
+     </div>
+     
+     <!--pagination WIP -->
+    <div class = "table-container"> <!--https://flask.palletsprojects.com/en/stable/templating/#jinja-setup 
+         WIP for dynamic content-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Attr1</th>
+                    <th>Attr2</th>
+                    <th>Attr3</th>
+                    <th>Attr4</th>
+                    <th>Attr5</th>                 
+                </tr>
+            </thead>
+
+            <tr>
+                <td>Value1</td> 
+                <td>Value2</td>
+                <td>Value3</td>
+                <td>Value4</td>
+                <td>Value5</td>
+            </tr>
+            <tr>
+                <td>Value1</td>
+                <td>Value2</td>
+                <td>Value3</td>
+                <td>Value4</td>
+                <td>Value5</td>
+            </tr>
+            <tr>
+                <td>Value1</td>
+                <td>Value2</td>
+                <td>Value3</td>
+                <td>Value4</td>
+                <td>Value5</td>
+            </tr>
+            <tr>
+                <td>Value1</td>
+                <td>Value2</td>
+                <td>Value3</td>
+                <td>Value4</td>
+                <td>Value5</td>
+            </tr>
+            <tr>
+                <td>Value1</td>
+                <td>Value2</td>
+                <td>Value3</td>
+                <td>Value4</td>
+                <td>Value5</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+</body>
+</html>
