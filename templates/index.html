@@ -14,75 +14,51 @@
     </div>
     
     <div class = "change-view"> 
-        <h2> Current View: Placeholder</h2>
-        <button id = "view-button"> Change View</button>
+        <h2>Current View: {{ title }}</h2>
+        <button id="view-button" onclick="window.location.href='/customer'">Change View</button>
     </div>
 
 
     <div class = "button-container">
-    <button id = "vendor-button" > Vendor </button>
-    <button id = "customer-button" > Customer </button>
-    <button id = "line-button" > Line </button>
-    <button id = "invoices-button" > Invoices </button>
-    <button id = "products-button" > Products </button>
+        <button onclick="window.location.href='/vendor'">Vendor</button>
+        <button onclick="window.location.href='/customer'">Customer</button>
+        <button onclick="window.location.href='/line'">Line</button>
+        <button onclick="window.location.href='/invoices'">Invoices</button>
+        <button onclick="window.location.href='/products'">Products</button>
     </div>
 
-    <div class = "results-search"> 
-        <p id = "num-results">Showing X results </p> <!-- Dynamic content-->
-        <p id = "advanced-search"> Advanced Search </p> <!-- Pop up WIP-->
-     </div>
+    <div class="results-search">
+        <p id="num-results">Showing {{ data|length }} results</p>
+        <p id="advanced-search">Advanced Search</p>
+    </div>
      
      <!--pagination WIP -->
     <div class = "table-container"> <!--https://flask.palletsprojects.com/en/stable/templating/#jinja-setup 
          WIP for dynamic content-->
-        <table>
+         <table>
             <thead>
                 <tr>
-                    <th>Attr1</th>
-                    <th>Attr2</th>
-                    <th>Attr3</th>
-                    <th>Attr4</th>
-                    <th>Attr5</th>                 
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
-
-            <tr>
-                <td>Value1</td> 
-                <td>Value2</td>
-                <td>Value3</td>
-                <td>Value4</td>
-                <td>Value5</td>
-            </tr>
-            <tr>
-                <td>Value1</td>
-                <td>Value2</td>
-                <td>Value3</td>
-                <td>Value4</td>
-                <td>Value5</td>
-            </tr>
-            <tr>
-                <td>Value1</td>
-                <td>Value2</td>
-                <td>Value3</td>
-                <td>Value4</td>
-                <td>Value5</td>
-            </tr>
-            <tr>
-                <td>Value1</td>
-                <td>Value2</td>
-                <td>Value3</td>
-                <td>Value4</td>
-                <td>Value5</td>
-            </tr>
-            <tr>
-                <td>Value1</td>
-                <td>Value2</td>
-                <td>Value3</td>
-                <td>Value4</td>
-                <td>Value5</td>
-            </tr>
+            <tbody>
+                {% if data %}
+                    {% for row in data %}
+                    <tr>
+                        {% for column in columns %}
+                        <td>{{ row[column] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="{{ columns|length }}">No data available</td>
+                    </tr>
+                {% endif %}
+            </tbody>
         </table>
-    </div>
     </div>
 </body>
 </html>
