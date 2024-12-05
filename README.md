@@ -49,6 +49,9 @@ pip install -r requirements.txt
 
 python app.py - Hopefully that works
 
+## Databse Setup!!!
+Open config.env and change all the info there to match your database and then it should work after that.
+
 
 
 
