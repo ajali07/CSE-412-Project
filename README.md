@@ -31,6 +31,15 @@ cd CSE-412-Project
 
 Setting up virtual environment
 
+## Automate Database Setup:
+
+Launch postgres-
+sudo -i -u postgres
+
+Ensure config.env matches all info.
+
+python3 createDatabase.py
+
 ## Windows
 
 python -m venv venv
