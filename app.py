@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request 
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -65,6 +65,14 @@ class Vendor(db.Model):
     V_STATE = db.Column(db.String)
     V_ORDER = db.Column(db.Integer)
 
+model_mapping = {
+    'Customer': Customer,
+    'Invoice': Invoice,
+    'Line': Line,
+    'Product': Product,
+    'Vendor': Vendor
+}
+
 # Helper function to process query data
 def process_data(query_result):
     data = [vars(obj) for obj in query_result]
@@ -76,6 +84,37 @@ def process_data(query_result):
 @app.route('/')
 def home():
     return render_template('index.html', title="Home", data=[], columns=[])
+
+@app.route('/advanced_search', methods=['POST'])
+def advanced_search():
+    table = request.form['table']
+    attribute = request.form['attribute']
+    search_term = request.form['search_term']
+
+    model = model_mapping.get(table)
+    if model is None:
+        return "Error: Table not found", 404
+
+    if hasattr(model, attribute):
+        column = getattr(model, attribute)
+        # Check if the column type is a string type; adjust if using different dialects or custom types
+        if isinstance(column.type, db.String):
+            results = db.session.query(model).filter(column.contains(search_term)).all()
+        else:
+            # For numerical columns, we cast them to text for 'LIKE' operation
+            results = db.session.query(model).filter(db.cast(column, db.String).like(f'%{search_term}%')).all()
+        
+        processed_data = process_data(results)
+        columns = [column.name for column in model.__table__.columns]
+
+        return render_template(
+            'index.html',
+            title=f"Search Results for {table}",
+            data=processed_data,
+            columns=columns
+        )
+    else:
+        return "Error: Attribute not found", 404
 
 @app.route('/customer')
 def view_customers():
