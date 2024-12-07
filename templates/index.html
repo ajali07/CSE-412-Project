@@ -28,9 +28,57 @@
     </div>
 
     <div class="results-search">
-        <p id="num-results">Showing {{ data|length }} results</p>
-        <p id="advanced-search">Advanced Search</p>
+        <p id="toggle-advanced-search" onclick="toggleAdvancedSearch()">Advanced Search</p>
+        <div id="advanced-search" style="display:none;">
+            <form action="/advanced_search" method="post">
+                <label for="table-select">Choose a table:</label>
+                <select id="table-select" name="table" onchange="updateAttributes(this.value)">
+                    <option value="Vendor">Vendor</option>
+                    <option value="Product">Product</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Line">Line</option>
+                    <option value="Invoices">Invoices</option>
+                </select>
+
+                <label for="attribute-select">Choose an attribute:</label>
+                <select id="attribute-select" name="attribute">
+                    <!-- Options will be filled by JavaScript -->
+                </select>
+
+                <input type="text" name="search_term" placeholder="Enter search term...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </div>
+
+    <script>
+    function updateAttributes(selectedTable) {
+        var attributes = {
+            'Vendor': ['V_CODE', 'V_NAME', 'V_CONTACT', 'V_AREACODE', 'V-PHONE', 'V_STATE', 'V_ORDER'],
+            'Product': ['P_CODE', 'P_DESCRIPT', 'P_PRICE', 'P_QOH', 'P_MIN', 'P_PRICE', 'P_DISCOUNT', 'V_CODE'],
+            'Customer': ['CUS_CODE', 'CUS_LNAME', 'CUS_FNAME', 'CUS_INITIAL', 'CUS_AREACODE', 'CUS_PHONE', 'CUS_BALANCE'],
+            'Line': ['INV_NUMBER', 'LINE_NUMBER', 'P_CODE', 'LINE_UNITS', 'LINE_PRICE'],
+            'Invoices': ['INV_NUMBER', 'CUS_CODE', 'INV_DATE']
+        };
+        var attributeSelect = document.getElementById('attribute-select');
+        attributeSelect.innerHTML = ''; // Clear existing options
+        attributes[selectedTable].forEach(function(attribute) {
+            var newOption = document.createElement('option');
+            newOption.value = attribute;
+            newOption.text = attribute;
+            attributeSelect.appendChild(newOption);
+        });
+    }
+
+    function toggleAdvancedSearch() {
+        var advSearchDiv = document.getElementById('advanced-search');
+        if (advSearchDiv.style.display === 'none') {
+            advSearchDiv.style.display = 'block';
+        } else {
+            advSearchDiv.style.display = 'none';
+        }
+    }
+    </script>
      
      <!--pagination WIP -->
     <div class = "table-container"> <!--https://flask.palletsprojects.com/en/stable/templating/#jinja-setup 
